@@ -16,29 +16,42 @@ public:
 void Stack::push(int x){
   NodePtr new_node=new NODE(x);
   if(new_node){
-            // Left missing for exercises…
+        new_node->set_next(top); 
+        top = new_node;  
+        size++;        
    }
- 
-         // Left missing for exercises…
+ else cout<< "Not enough"<<endl;
+        
     
 }
 
 int Stack::pop(){
         NodePtr t=top;
+        if (top == NULL) return -1;
+        else {
         int value;
         value=t->get_value();
-    // Left missing part for exercises
+        top = top->get_next(); // 
+        --size;
         delete t;
         return value;
+        }
+        cout << "Emtpy stack"<<endl ;
 	//be careful of the empty stack!!!
     }
 
 Stack::Stack(){
-    //initialize stack
+    top=NULL;
+    size=0;
     
 }
 Stack::~Stack(){
+    cout << "Clear the stack"<< endl;
     //delete all remaning stack (i.e. pop all) 
+    int n = size;
+    while (n>0){
+    pop();
+n--;}
     
 }
 
